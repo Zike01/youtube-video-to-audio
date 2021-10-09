@@ -1,2 +1,2 @@
 # Youtube Video to Audio 
-Youtube Audio Downloader
+A text-based Youtube audio downloader.
