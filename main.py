@@ -1,11 +1,24 @@
 from youtube_dl import YoutubeDL
 
-audio_downloader = YoutubeDL({'format': 'm4a'})
+
 while True:
     try:
         print("Youtube Downloader".center(40, "_"))
         URL = input("Enter youtube url: ")
-        audio_downloader.extract_info(URL)
+        
+        # Get video title
+        info_dict = YoutubeDL().extract_info(URL, download=False)
+        
+        # Assign 'm4a' format and set directory for downloaded videos
+        ydl_options = {
+            'format': 'm4a',
+            'outtmpl': f'./downloaded_videos/{info_dict["title"]}.m4a',
+    
+        }
+
+        with YoutubeDL(ydl_options) as ydl:
+            ydl.download([URL])
+    
     except Exception:
         print("Couldn't download the audio")
     finally:
